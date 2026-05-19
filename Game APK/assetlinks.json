@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.farrukhmammadli.twa",
+        "sha256_cert_fingerprints": ["11:09:4E:64:83:87:12:F0:30:63:2A:67:78:F5:D6:22:5E:00:96:A5:49:C9:C9:FE:5A:CF:FA:3E:94:A4:A6:BB"]
+      }
+    }]

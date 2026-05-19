@@ -1,169 +1,134 @@
 <div align="center">
 
-<img src="icon.png" alt="FEKO 101 Logo" width="120" height="120" style="border-radius:20px"/>
-
-# 🁣 FEKO 101
-
-### Professional Domino Köməkçisi · Domino Assistant
+# FEKO 101
+### Professional Domino Assistant
 
 [![PWA](https://img.shields.io/badge/PWA-Ready-3b82f6?style=for-the-badge&logo=googlechrome&logoColor=white)](https://farrukhmammadli.github.io/feko101)
-[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Web-0d1117?style=for-the-badge&logo=android&logoColor=3DDC84)](https://farrukhammadli.github.io/feko101)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Web-0d1117?style=for-the-badge&logo=android&logoColor=3DDC84)](https://farrukhmammadli.github.io/feko101)
 [![Language](https://img.shields.io/badge/Language-Azerbaijani-00B4D8?style=for-the-badge)](.)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-**[🌐 Canlı Demo](https://farrukhammadli.github.io/feko101)** · **[📱 APK Yüklə](#-apk-yüklə)** · **[📖 Qaydalar](#-oyun-qaydaları)**
+**[Live Web Application](https://farrukhmammadli.github.io/feko101)** | **[Download Android APK](#android-apk-download)** | **[Rules](#rules-of-101-system)**
 
 </div>
 
 ---
 
-## 🎯 Haqqında
+## About The Project
 
-**FEKO 101** — domino oyunçuları üçün hazırlanmış ağıllı köməkçi proqramdır. Oyun boyu əlinizdəki daşları izləyir, rəqibin mümkün daşlarını hesablayır və sizə ən optimal gedişi tövsiyə edir.
-
-> 🏆 **101 Sistemi** — Azərbaycan milli domino qaydaları əsasında hazırlanmışdır.
+FEKO 101 is an intelligent assistant application developed specifically for domino players. It tracks the tiles in your hand during the game, analyzes the probability of tiles in your opponent's hand based on game flow, and recommends the most optimal moves. The system is designed based on the traditional Azerbaijani "101" domino rules.
 
 ---
 
-## ✨ Xüsusiyyətlər
+## Key Features
 
-| Funksiya | Açıqlama |
-|----------|----------|
-| 🧠 **Ağıllı Məsləhətçi** | Oyun məntiqi əsasında ən yaxşı gedişi tövsiyə edir |
-| 📊 **Ehtimal Analizi** | Rəqibin əlindəki daşların ehtimalını hesablayır |
-| 🎮 **2 və 4 Nəfərlik** | Həm fərdi, həm komanda rejimi dəstəklənir |
-| 📱 **PWA / Offline** | İnternet olmadan da işləyir |
-| ↺ **Geri Al** | Səhv gedişi ləğv etmək imkanı |
-| 🔒 **Kilit Detektoru** | Oyun kilidi vəziyyətini avtomatik aşkarlayır |
-| 🏆 **Xal Sistemi** | 101 xal sistemini tam dəstəkləyir |
-| 🌙 **Dark Mode** | Göz yorulmayan qaranlıq interfeys |
+- **Intelligent Advisor**: Recommends the best possible move based on game logic and current board state.
+- **Probability Analysis**: Calculates and displays the probability of specific tiles remaining in the opponent's hand.
+- **Game Modes**: Supports both 2-player (individual) and 4-player (team) modes.
+- **PWA & Offline Support**: Can be installed on mobile devices and works completely offline without an internet connection.
+- **Action Management**: Includes a "Undo" feature to cancel accidental or incorrect moves.
+- **Lock Detector**: Automatically detects when the game is locked and provides necessary instructions.
+- **Scoring System**: Fully implements the 101 scoring rules, tracking points across multiple rounds.
+- **Modern Interface**: Features a dark mode UI with glassmorphism elements to reduce eye strain during long gaming sessions.
 
 ---
 
-## 📱 APK Yüklə
+## Android APK Download
 
-Tətbiqi birbaşa Android telefonunuza quraşdıra bilərsiniz:
+You can install the application directly on your Android device.
 
-### Metod 1 — Brauzerdən (Tövsiyə olunur)
-1. Telefonunuzda **Chrome** ilə bu linki açın:  
-   👉 `https://farrukhammadli.github.io/feko101`
-2. Sağ yuxarıdakı **⋮** menyusuna basın
-3. **"Ana ekrana əlavə et"** seçin
-4. **"Quraşdır"** basın — bitdi! ✅
+### Download Link
+You can find the installation file in the `Game APK` folder of this repository:
+- **[Download FEKO 101.apk](Game%20APK/FEKO%20101.apk)**
 
-### Metod 2 — PWA Builder vasitəsilə
-1. [pwabuilder.com](https://www.pwabuilder.com) saytına keçin
-2. URL daxil edin: `https://farrukhammadli.github.io/feko101`
-3. **"Build My PWA"** basın → **Android** seçin
-4. `.apk` faylı yükləyin
+### Installation Instructions
+1. Download the `FEKO 101.apk` file from the link above.
+2. Open the downloaded file on your Android device.
+3. If prompted, allow installation from "Unknown Sources" in your browser or file manager settings.
+4. Complete the installation and open the application.
 
----
-
-## 🖥️ Skrinşotlar
-
-<div align="center">
-
-| Ana Ekran | Oyun Masası | Köməkçi |
-|:---------:|:-----------:|:-------:|
-| 🏠 Oyun seçimi | 🎮 Canlı masa | 🧠 Daş tövsiyəsi |
-
-</div>
+*Alternative Web Installation:* Open `https://farrukhmammadli.github.io/feko101` in your mobile Chrome browser, open the menu (three dots), and select "Add to Home Screen".
 
 ---
 
-## 🃏 Oyun Qaydaları
+## Project Structure
 
-<details>
-<summary><b>101 Sistemi — Ətraflı Qaydalar</b></summary>
+The repository is structured to separate application code from the distribution files:
 
-### Başlanğıc
-- **2 nəfərlik**: hər oyunçuya **7 daş**
-- **4 nəfərlik**: hər oyunçuya **7 daş** (2 komanda)
-- Oyunu **Qoşa 1 (1|1)** sahibi başlayır
-
-### Gedişlər
-- Masa uclarına uyğun daş oynanır
-- Əldə uyğun daş yoxdursa → **bazara** get
-- Bazarda da yoxdursa → **pas**
-
-### Oyunun Sonu
-- Daşları birinci bitirən **qalib** gəlir
-- Qalib rəqibin əlindəki daşların **cəmini** qazanır
-- **101 xala** çatan komanda/oyunçu udur
-
-### Kilit Qaydası
-- Hər iki uc eyni rəqəmə düşüb, heç kimin o rəqəmdən daşı yoxdursa → **kilit**
-- Kilit vəziyyətdə əllərdəki daşların cəmi azı **qalib** sayılır
-
-</details>
-
----
-
-## 🛠️ Texnologiyalar
-
-```
-Frontend:   HTML5 · CSS3 · Vanilla JavaScript
-PWA:        Web App Manifest · Service Worker · Cache API
-Design:     Dark Mode · Glassmorphism · CSS Animations
-Fonts:      Google Fonts (Outfit · Fira Code)
+```text
+FEKO 101/
+|
+|-- Game APK/
+|   |-- FEKO 101.apk         # Android installation package
+|   |-- assetlinks.json      # Digital asset links for app verification
+|
+|-- index.html               # Main HTML structure
+|-- styles.css               # Styling and responsive design
+|-- app.js                   # Core application logic and game engine
+|-- sw.js                    # Service Worker for offline PWA capabilities
+|-- manifest.json            # PWA configuration manifest
+|-- icon.png                 # Application icon
+|
+|-- Domino.bat               # Windows execution script
+|-- Oyunu_Baslat.bat         # Windows script to launch app in mobile resolution
+|-- Izah.docx                # Detailed project requirements and logic explanation
+|
+|-- README.md                # Documentation (this file)
+|-- LICENSE                  # MIT License
+|-- .gitignore               # Git exclusion rules
 ```
 
 ---
 
-## 📁 Layihə Strukturu
+## Local Execution on Windows
 
-```
-feko101/
-├── 📄 index.html        # Ana HTML səhifə
-├── 🎨 styles.css        # Stil faylı
-├── ⚙️  app.js           # Əsas oyun məntiqi
-├── 🔧 sw.js             # Service Worker (offline)
-├── 📋 manifest.json     # PWA manifesti
-├── 🖼️  icon.png         # Tətbiq ikonu
-└── 📖 README.md         # Bu fayl
-```
+For developers or Windows users who want to run the application locally without a browser or server:
+
+1. Clone or download this repository.
+2. Double-click the **`Oyunu_Baslat.bat`** file.
+3. The application will automatically open in a dedicated Microsoft Edge or Google Chrome window, resized to mimic a mobile device screen (390x844 resolution) for the best user experience.
 
 ---
 
-## 🚀 Yerli İşə Salma
+## Rules of "101 System"
 
-```bash
-# Repo-nu kopyala
-git clone https://github.com/FarrukhMammadli/feko101.git
+The application operates on the following foundational rules:
 
-# Qovluğa keç
-cd feko101
+**Starting the Game**
+- In 2-player mode: Each player draws 7 tiles.
+- In 4-player mode (Teams): Each player draws 7 tiles.
+- The player with the double-one (1|1) tile starts the game.
 
-# İstənilən lokal server ilə aç (Python nümunəsi)
-python -m http.server 8080
+**Making Moves**
+- Players must match the numbers on the exposed ends of the board.
+- If a player does not have a matching tile, they must go to the "bazaar" to draw tiles until they find a match.
+- If the bazaar is empty and the player still has no matching tile, they must "pass" their turn.
 
-# Brauzerdə aç
-# http://localhost:8080
-```
+**Ending the Round**
+- The first player to play all their tiles wins the round.
+- The winner scores points equal to the sum of the numbers on the tiles remaining in the opponent's (or opposing team's) hands.
+- The first player or team to reach a total of 101 points wins the match.
 
----
-
-## 👨‍💻 Müəllif
-
-<div align="center">
-
-**Farrukh Məmmədli**  
-[![GitHub](https://img.shields.io/badge/GitHub-FarrukhMammadli-181717?style=flat-square&logo=github)](https://github.com/FarrukhMammadli)
-
-</div>
+**Locked Game**
+- If both ends of the board require the same number, and no player holds a tile with that number, the game is "locked".
+- In a locked state, players count the sum of the tiles in their hands. The player/team with the lowest sum wins the round.
 
 ---
 
-## 📄 Lisenziya
+## Technologies Used
 
-Bu layihə **MIT Lisenziyası** altında paylaşılır — bax [LICENSE](LICENSE)
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **PWA Architecture**: Web App Manifest, Service Worker, Cache API
+- **Design Elements**: Custom CSS Variables, Flexbox/Grid Layouts, Google Fonts (Outfit, Fira Code)
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
-
-⭐ **Bəyəndinizsə, ulduz verməyi unutmayın!**
-
-*FEKO 101 — Domino oyununun ağıllı köməkçisi*
-
+Copyright (c) 2026 Farrukh Mammadli
 </div>
