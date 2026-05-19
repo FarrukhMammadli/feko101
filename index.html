@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FEKO 101">
+    <meta name="description" content="FEKO 101 - Professional Domino Assistant">
+    <title>FEKO 101</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        
+        
+        <header class="app-header" id="main-header" style="display:none; padding: 10px 15px; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); border-bottom: 2px solid var(--border-color);">
+            <div class="global-scores" style="font-size: 1rem; font-weight: bold; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); white-space: nowrap;">
+                Mən: <span id="global-score-me" class="text-success" style="margin-right: 5px;">0</span> | Rəqib: <span id="global-score-opp" class="text-danger" style="margin-left: 5px;">0</span>
+            </div>
+            <div style="display:flex; gap: 8px;">
+                <button id="btn-undo" class="btn btn-secondary btn-sm" style="display:none; font-size: 0.75rem; padding: 6px 10px;">↺ Geri</button>
+                <button id="btn-reset" class="btn btn-danger btn-sm" style="display:none; font-size: 0.75rem; padding: 6px 10px;">Tərk Et</button>
+            </div>
+        </header>
+
+        
+        <div id="home-screen" class="screen-content active-screen" style="align-items:center; justify-content:center; text-align:center; height:100vh; background: var(--bg-dark);">
+            <h1 style="font-size: 5rem; font-weight: 800; color: #fff; text-shadow: 0 4px 20px rgba(59, 130, 246, 0.6); margin-bottom: 40px; font-family: 'Outfit', sans-serif;">FEKO<br><span style="color:var(--accent-color);">101</span></h1>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 25px; border-radius: 15px; width: 85%; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <p style="color: var(--text-muted); margin-bottom: 5px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Oyun Seçimi</p>
+                <button id="btn-mode-2p" class="btn btn-primary" style="width: 100%; font-size: 1.3rem; padding: 15px; border-radius: 10px; font-weight: bold; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">2 Nəfərlik Oyun</button>
+                <button id="btn-mode-4p" class="btn btn-secondary" style="width: 100%; font-size: 1.3rem; padding: 15px; border-radius: 10px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);">4 Nəfərlik Oyun</button>
+            </div>
+        </div>
+
+        
+        <div id="setup-screen" class="screen-content">
+            <section class="section-card">
+                <h2 class="section-title">1. Oyunçu Sayı</h2>
+                <select id="setup-player-count" class="select-input" style="width: 100%; margin-bottom: 15px;">
+                    <option value="2">2 Oyunçu (101 Sistemi)</option>
+                    <option value="4" selected>4 Oyunçu (Komanda - 101)</option>
+                </select>
+
+                <h2 class="section-title">2. Mənim Əlim (<span id="setup-target-count">7</span> daş seçin)</h2>
+                <div class="info-msg">Hazırda seçilib: <span id="setup-hand-count" class="text-accent">0</span> / <span id="setup-target-count-display">7</span></div>
+                <div class="domino-pool-grid" id="setup-pool-grid">
+                    
+                </div>
+
+                <div class="turn-selection-btns" id="setup-start-btns" style="display:none; margin-top: 20px;">
+                    <button id="btn-start-game" class="btn btn-primary" style="width:100%; font-size:1.1rem; padding: 12px;">Qoşa 1 Yoxla / Oyuna Başla</button>
+                </div>
+
+                <button id="btn-return-menu" class="btn btn-secondary" style="width: 100%; margin-top: 15px; font-weight: bold; border: 1px solid rgba(255,255,255,0.15); padding: 10px;">Ana Menyuya Qayıt</button>
+            </section>
+        </div>
+
+        
+        <div id="game-screen" class="screen-content">
+            
+            
+            <section class="section-card status-section">
+                <div class="turn-banner" id="turn-banner">
+                    <span id="turn-text">Mənim Növbəm</span>
+                </div>
+                
+                
+                <div class="opponents-info-row" id="opponents-info">
+                    
+                </div>
+            </section>
+
+            
+            <section class="section-card table-section">
+                <div class="ends-indicator-container">
+                    <div class="ends-header-row">
+                        <div class="end-box left-end" id="indicator-left-end">
+                            <span class="end-label">SOL UC</span>
+                            <span class="end-val">-</span>
+                        </div>
+                        <div class="table-title">Oyun Masası</div>
+                        <div class="end-box right-end" id="indicator-right-end">
+                            <span class="end-label">SAĞ UC</span>
+                            <span class="end-val">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="table-track-container">
+                        <div class="table-track" id="table-track">
+                            <div class="empty-track-msg">Masa boşdur.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="section-card action-section" id="action-area">
+                
+                <div id="my-turn-actions" class="turn-actions">
+                    <h2 class="section-title">Mənim Əlim <span id="engine-recommends-msg" class="text-accent" style="font-size: 0.8rem; float:right;">(Məsləhətli: Rəngli)</span></h2>
+                    <div class="hand-tiles-container" id="game-hand-container">
+                        
+                    </div>
+
+                    
+                    <div id="opp-prob-section" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                        <h2 class="section-title" style="color: #aaa; font-size: 1rem; margin-bottom: 5px;">Rəqibdə Olma Ehtimalı Ən Yüksək Daşlar <span id="opp-prob-count" style="float:right; color:var(--danger-color);">0</span></h2>
+                        <div class="hand-tiles-container" id="opp-prob-container" style="opacity: 0.65; transform: scale(0.85); transform-origin: left top; padding: 5px; min-height: 50px;">
+                            
+                        </div>
+                    </div>
+
+                    <button id="btn-my-pass" class="btn btn-danger" style="width: 100%; margin-top: 15px;">Məndə Daş Yoxdur (Bazara Get / Pas)</button>
+                </div>
+
+                
+                <div id="opp-turn-actions" class="turn-actions" style="display: none;">
+                    <h2 class="section-title">Rəqibin Gedişi</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button id="btn-opp-played" class="btn btn-primary" style="flex:1;">Daş Oynadı</button>
+                        <button id="btn-opp-passed" class="btn btn-secondary" style="flex:1;">Bazara Getdi / Pas</button>
+                    </div>
+                    
+                    
+                    <div id="opp-play-selector" class="popup-box" style="display: none;">
+                        <h3>Rəqib hansı daşı oynadı?</h3>
+                        <div class="domino-pool-grid" id="opp-pool-grid">
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    
+
+    
+    <div class="modal-overlay" id="qosa-1-modal">
+        <div class="modal-card">
+            <h3 style="color:var(--accent-color)">Qoşa 1 Yoxlanışı</h3>
+            <p style="margin-bottom:10px;">Sizin əlinizdə 1-1 yoxdur.</p>
+            <p><strong>Rəqibdə Qoşa 1 varmı?</strong></p>
+            <div class="modal-actions" style="flex-direction: column; gap: 10px; margin-top:15px;">
+                <button id="btn-opp-has-11" class="btn btn-primary">Bəli, rəqibdədir (Rəqib başlayır)</button>
+                <button id="btn-nobody-has-11" class="btn btn-danger">Xeyr, heç kimdə yoxdur (2 daş çəkin)</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="game-over-modal">
+        <div class="modal-card">
+            <h2 id="game-over-title">OYUN BİTDİ</h2>
+            <div id="table-dominoes" style="position:relative; width: 100%; height: 260px; margin-top: 20px;"></div>
+            
+            <p id="game-over-desc" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 15px;"></p>
+            
+            <div id="game-over-input-section" style="display: none; margin-bottom: 15px;">
+                <label>Rəqibin əlində qalan daşların xal cəmi:</label>
+                <input type="number" id="input-opp-points" class="select-input" style="width: 100%; margin-top: 5px; font-size: 1.2rem;" min="0">
+                <button id="btn-confirm-score" class="btn btn-primary" style="margin-top: 10px; width: 100%;">Xalı Təsdiqlə</button>
+            </div>
+
+            <div id="game-over-result-section" style="display: none; text-align: left; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+                <p style="margin-bottom:5px;">Mənim Cərimə Xalım: <strong id="go-my-score" class="text-success">0</strong></p>
+                <p>Rəqibin Cərimə Xalı: <strong id="go-opp-score" class="text-danger">0</strong></p>
+                <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
+                <h4 style="text-align:center; color:#bbb;">ÜMUMİ 101 HESABI</h4>
+                <p style="font-size:1.1rem;">Mən: <strong id="go-global-me" class="text-success">0</strong></p>
+                <p style="font-size:1.1rem;">Rəqib: <strong id="go-global-opp" class="text-danger">0</strong></p>
+            </div>
+            
+            <div class="modal-actions" id="game-over-actions" style="margin-top: 20px; display: none;">
+                <button id="btn-next-round" class="btn btn-primary">Növbəti Əl (Davam)</button>
+                <button id="btn-play-again" class="btn btn-secondary">Oyunu Sıfırla (0-0)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="play-modal">
+        <div class="modal-card">
+            <h3>Daşı haraya oynayırsınız?</h3>
+            <p id="modal-tile-desc">Gediş: [5-6]</p>
+            <div class="modal-actions">
+                <button id="modal-play-left" class="btn btn-primary">⬅ Sol Uca</button>
+                <button id="modal-play-right" class="btn btn-primary">Sağ Uca ➡</button>
+                <button id="modal-cancel" class="btn btn-secondary">Ləğv Et</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="opp-play-dir-modal">
+        <div class="modal-card">
+            <h3>Rəqib daşı haraya oynadı?</h3>
+            <p id="opp-modal-tile-desc">Gediş: [5-6]</p>
+            <div class="modal-actions">
+                <button id="opp-modal-play-left" class="btn btn-primary">⬅ Sol Uca</button>
+                <button id="opp-modal-play-right" class="btn btn-primary">Sağ Uca ➡</button>
+                <button id="opp-modal-cancel" class="btn btn-secondary">Ləğv Et</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="my-bazaar-modal">
+        <div class="modal-card" style="width: 95%; max-width: 450px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                <h3 style="margin:0;">Bazar (Mənim Növbəm)</h3>
+                <span class="text-accent" style="font-weight:bold;">Qalan: <span id="my-bazaar-left">14</span></span>
+            </div>
+            <p>Çəkdiyiniz daşı seçin (Avtomatik əlinizə düşəcək):</p>
+            <div class="domino-pool-grid" id="my-bazaar-pool" style="max-height: 350px; overflow-y: auto;">
+                
+            </div>
+            <div class="modal-actions" style="margin-top: 15px;">
+                <button id="btn-my-baz-pass" class="btn btn-danger">Daş tapılmadı (Sıranı ötür)</button>
+                <button id="btn-my-baz-close" class="btn btn-secondary">Məsləhətli Daşı Oyna / Geri</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="bazaar-modal">
+        <div class="modal-card">
+            <h3 id="bazaar-title">Rəqib Bazara Getdi</h3>
+            <div id="bazaar-count-section">
+                <p>Neçə daş çəkildi?</p>
+                <div style="display:flex; justify-content:center; align-items:center; gap: 15px; margin-bottom: 20px;">
+                    <button class="btn btn-secondary" id="btn-baz-minus" style="padding: 10px 20px; font-size: 1.5rem;">-</button>
+                    <span id="bazaar-draw-count" style="font-size: 2rem; font-weight: bold; color: var(--chess-light);">1</span>
+                    <button class="btn btn-secondary" id="btn-baz-plus" style="padding: 10px 20px; font-size: 1.5rem;">+</button>
+                </div>
+            </div>
+            
+            <p>Sonda hansı daş oynanıldı?</p>
+            <button id="btn-baz-select-tile" class="btn btn-outline" style="width: 100%; margin-bottom: 10px;">Daş Seç...</button>
+            <div id="bazaar-selected-tile-visual" style="display:flex; justify-content:center; margin-bottom:15px;"></div>
+            
+            <button id="btn-baz-no-play" class="btn btn-danger" style="width: 100%; margin-bottom: 15px;">Daş tapılmadı (Tam Pas)</button>
+
+            <div class="modal-actions">
+                <button id="btn-baz-confirm" class="btn btn-success">Təsdiqlə</button>
+                <button id="btn-baz-cancel" class="btn btn-secondary">Ləğv Et</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="modal-overlay" id="baz-tile-selector-modal" style="z-index: 2000;">
+        <div class="modal-card" style="width: 90%; max-width: 400px;">
+            <h3>Oynanılan Daşı Seçin</h3>
+            <div class="domino-pool-grid" id="baz-pool-grid" style="max-height: 300px; overflow-y: auto;">
+                
+            </div>
+            <button id="btn-baz-tile-cancel" class="btn btn-secondary" style="margin-top: 15px; width: 100%;">Geri</button>
+        </div>
+    </div>
+
+    
+    <div class="modal-overlay" id="digit-lock-modal">
+        <div class="modal-card" style="border: 2px solid var(--warning-color);">
+            <h2 style="color:var(--warning-color); margin-bottom: 10px;">⚠️ OYUN KİLİTLƏNDİ</h2>
+            <p id="digit-lock-desc" style="font-size: 1.1rem; font-weight: bold; margin: 15px 0; color: #fff; line-height: 1.4;"></p>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">
+                Pass məlumatlarına əsasən, komandalardan birində bu rəqəmli daşların heç biri yoxdur.
+                Qaydaya görə xal cəmləri dəyişmədən oyun yenidən başladılmalıdır.
+            </p>
+            <div class="modal-actions" style="flex-direction: column; gap: 10px;">
+                <button id="btn-digit-lock-restart" class="btn btn-danger" style="width: 100%; padding: 12px; font-size: 1.05rem;">Yenidən Başlat (Xalsız)</button>
+                <button id="btn-digit-lock-continue" class="btn btn-secondary" style="width: 100%; padding: 12px; font-size: 1.05rem;">Oyuna Davam Et</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=2"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>
