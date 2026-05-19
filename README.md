@@ -64,9 +64,6 @@ FEKO 101/
 |-- .well-known/
 |   |-- assetlinks.json      # Digital asset links for app verification
 |
-|-- docs/
-|   |-- Izah.docx            # Detailed project requirements and logic explanation
-|
 |-- index.html               # Main HTML structure
 |-- styles.css               # Styling and responsive design
 |-- app.js                   # Core application logic and game engine
