@@ -38,11 +38,11 @@ FEKO 101 is an intelligent assistant application developed specifically for domi
 You can install the application directly on your Android device.
 
 ### Download Link
-You can find the installation file in the `Game APK` folder of this repository:
-- **[Download FEKO 101.apk](Game%20APK/FEKO%20101.apk)**
+You can find the installation file in the `releases` folder of this repository:
+- **[Download FEKO 101.apk](releases/FEKO_101.apk)**
 
 ### Installation Instructions
-1. Download the `FEKO 101.apk` file from the link above.
+1. Download the `FEKO_101.apk` file from the link above.
 2. Open the downloaded file on your Android device.
 3. If prompted, allow installation from "Unknown Sources" in your browser or file manager settings.
 4. Complete the installation and open the application.
@@ -58,9 +58,14 @@ The repository is structured to separate application code from the distribution 
 ```text
 FEKO 101/
 |
-|-- Game APK/
-|   |-- FEKO 101.apk         # Android installation package
+|-- releases/
+|   |-- FEKO_101.apk         # Android installation package
+|
+|-- .well-known/
 |   |-- assetlinks.json      # Digital asset links for app verification
+|
+|-- docs/
+|   |-- Izah.docx            # Detailed project requirements and logic explanation
 |
 |-- index.html               # Main HTML structure
 |-- styles.css               # Styling and responsive design
@@ -69,9 +74,7 @@ FEKO 101/
 |-- manifest.json            # PWA configuration manifest
 |-- icon.png                 # Application icon
 |
-|-- Domino.bat               # Windows execution script
 |-- Oyunu_Baslat.bat         # Windows script to launch app in mobile resolution
-|-- Izah.docx                # Detailed project requirements and logic explanation
 |
 |-- README.md                # Documentation (this file)
 |-- LICENSE                  # MIT License
